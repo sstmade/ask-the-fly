@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="A decision instrument powered by the mushroom body of a real fruit-fly brain. No language model makes the choice.">
+<title>Ask the Fly</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/"}}</script>
+</head>
+<body data-step="0">
+
+<!-- The specimen: real FlyWire geometry. It appears where it has something to show. -->
+<div id="specimen" class="specimen"></div>
+<svg id="annotations" class="annotations" aria-hidden="true"></svg>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="brand" href="#" data-goto="0" aria-label="Ask the Fly, start">
+    <svg class="mark-eye" aria-hidden="true"></svg><span>Ask the Fly</span>
+  </a>
+  <nav class="progress" aria-label="Progress">
+    <button data-goto="1"><i></i><span>Dilemma</span></button>
+    <button data-goto="2"><i></i><span>Questions</span></button>
+    <button data-goto="3"><i></i><span>Simulation</span></button>
+    <button data-goto="4"><i></i><span>Answer</span></button>
+    <button data-goto="5"><i></i><span>Why</span></button>
+  </nav>
+  <div class="bar-right">
+    <button class="link" id="share">Share</button>
+    <button class="link" id="open-method">Method</button>
+  </div>
+</header>
+
+<main id="screens">
+
+  <!-- 00 · COVER -->
+  <section class="screen intro" data-step="0" aria-labelledby="t0">
+    <p class="kicker" data-r>A decision instrument &middot; FlyWire v783</p>
+    <h1 id="t0" class="display split">Ask <em>the</em> Fly</h1>
+    <p class="lede" data-r>When you can't decide, consult 5,877 real fruit-fly neurons that know absolutely nothing about your problem.</p>
+    <div class="row" data-r>
+      <button class="cta magnetic" data-goto="1"><span>Ask the fly</span><i class="cta-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i></button>
+    </div>
+    <ul class="legend" id="legend" data-r aria-label="Populations shown in colour"></ul>
+  </section>
+
+  <!-- 01 · DILEMMA -->
+  <section class="screen dilemma" data-step="1" aria-labelledby="t1">
+    <p class="kicker" data-r>Step 1 of 3</p>
+    <h2 id="t1" class="headline split">What are you <em>torn</em> between?</h2>
+    <div class="duel" data-r>
+      <label class="card a">
+        <span class="card-top"><span class="tag">Option A</span><span class="smell" id="smell-a"></span></span>
+        <textarea id="name-a" rows="2" maxlength="60" spellcheck="false" aria-label="Option A" placeholder="Option A"></textarea>
+        <span class="odour"><img id="odour-a" alt=""></span>
+        <span class="sense" id="sense-a" aria-live="polite"></span>
+      </label>
+      <button class="vs magnetic" id="swap" aria-label="Swap A and B"><span>vs</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h13l-4-4M19 15H6l4 4"/></svg></button>
+      <label class="card b">
+        <span class="card-top"><span class="tag">Option B</span><span class="smell" id="smell-b"></span></span>
+        <textarea id="name-b" rows="2" maxlength="60" spellcheck="false" aria-label="Option B" placeholder="Option B"></textarea>
+        <span class="odour"><img id="odour-b" alt=""></span>
+        <span class="sense" id="sense-b" aria-live="polite"></span>
+      </label>
+    </div>
+    <p class="note" data-r>Each option is translated into a smell from the fly's world: people smell like other flies, food like ripe fruit, risk like mould. The lines are the real smell neurons it switches on.</p>
+    <div class="examples" data-r>
+      <span class="note">Or try</span>
+      <ul id="examples"></ul>
+    </div>
+    <div class="actions sticky" data-r>
+      <button class="cta magnetic" id="to-questions"><span>Next</span><i class="cta-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i></button>
+    </div>
+  </section>
+
+  <!-- 02 · QUESTIONS (one at a time) -->
+  <section class="screen questions" data-step="2" aria-labelledby="q-title">
+    <div class="q-head" data-r>
+      <p class="kicker"><span id="q-count">01 / 07</span></p>
+      <div class="q-bar" id="q-bar"></div>
+    </div>
+    <div class="q-stage" id="q-stage" aria-live="polite"></div>
+    <div class="actions sticky q-nav" data-r>
+      <button class="ghost" id="q-prev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Back</span></button>
+      <button class="cta magnetic" id="q-next"><span id="q-next-label">Next</span><i class="cta-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i></button>
+    </div>
+  </section>
+
+  <!-- 03 · SIMULATION -->
+  <section class="screen sim" data-step="3" aria-labelledby="t3">
+    <div class="sim-top">
+      <p class="kicker" id="sim-count">Simulating 100 flies</p>
+      <h2 id="t3" class="sim-title"><span id="phase-title">The fly is thinking</span></h2>
+      <p class="sim-sub" id="phase">Your dilemma becomes two smells for 100 simulated flies.</p>
+    </div>
+    <div class="sim-bottom">
+      <div class="channels" id="channels"></div>
+      <div class="timeline"><div class="tl" id="timeline"><i id="sim-bar"></i></div>
+        <div class="tl-labels"><span>Learn A</span><span>Learn B</span><span>Test A</span><span>Test B</span></div></div>
+      <button class="ghost light" id="skip"><span>Skip</span></button>
+    </div>
+  </section>
+
+  <!-- 04 · ANSWER -->
+  <section class="screen result" data-step="4" aria-labelledby="t4">
+    <div class="res-main">
+      <p class="kicker" data-r>The fly says</p>
+      <h2 id="t4" class="verdict" aria-live="polite"><span id="verdict"></span></h2>
+      <p class="share-of" data-r><span class="pct" id="pct">0%</span><span id="pct-label"></span></p>
+      <div class="bars" id="bars" data-r></div>
+      <div class="actions" data-r>
+        <button class="cta magnetic" id="see-why"><span>See why</span><i class="cta-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i></button>
+        <button class="ghost" id="again"><span>Ask 100 new flies</span></button>
+        <button class="ghost" id="restart"><span>New question</span></button>
+      </div>
+    </div>
+    <figure class="flies" data-r>
+      <div class="fly-grid" id="fly-grid" role="img"></div>
+      <figcaption class="note">Each dot is one simulated fly and the option it chose.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 05 · WHY -->
+  <section class="screen insight" data-step="5" aria-labelledby="t5">
+    <p class="kicker" data-r>Inside the fly</p>
+    <h2 id="t5" class="headline"><span id="why-title">Why?</span></h2>
+    <ul class="why" id="why" data-r></ul>
+    <details class="details" data-r>
+      <summary>For the curious</summary>
+      <p class="note sub">Output neurons that swung the vote</p>
+      <ol id="mbons" class="mbons"></ol>
+      <label class="wiring"><span class="note sub">Wiring</span>
+        <select id="topology">
+          <option value="real">Real connectome · FlyWire v783</option>
+          <option value="shuffled">Control · shuffled wiring</option>
+          <option value="random">Control · random graph</option>
+        </select>
+      </label>
+      <p class="meta" id="meta"></p>
+    </details>
+    <div class="actions" data-r>
+      <button class="ghost" id="again2"><span>Ask 100 new flies</span></button>
+      <button class="ghost" id="restart2"><span>New question</span></button>
+    </div>
+  </section>
+</main>
+
+<footer class="caption" id="caption">
+  <span><em>Drosophila melanogaster</em> · whole-brain connectome</span>
+  <span id="caption-live">8,356 neurons drawn · 5,877 simulated</span>
+</footer>
+
+<p class="loading" id="loading"><i></i><span>Loading specimen</span></p>
+
+<div class="method" id="method" role="dialog" aria-modal="true" aria-labelledby="method-t" hidden>
+  <div class="method-inner">
+    <button class="close" id="close-method" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <p class="kicker">Method</p>
+    <h2 id="method-t" class="headline">A fly, a smell, <em>and a memory.</em></h2>
+    <div class="method-cols">
+      <div>
+        <h3>The circuit</h3>
+        <p>The mushroom body is the fruit fly's centre for learning what smells good or bad. We take every neuron of it from the FlyWire whole-brain connectome — 277 olfactory projection neurons, 5,177 Kenyon cells, the APL and DPM neurons, 323 dopamine neurons and 96 output neurons — wired by their 1.55 million real synapses, signed by predicted neurotransmitter.</p>
+        <h3>The translation</h3>
+        <p>A fly knows nothing of jobs or parties, but its world has ripe fruit, fermenting fruit, other flies, mould, the CO₂ of stressed flies, safe places to lay eggs, and green leaves. Each of these is detected by specific olfactory glomeruli, identified by their receptors in the literature (for example, geosmin from harmful mould is detected only by DA2). Your option's words are matched to up to two of these things and their glomeruli are switched on; the rest of the eight-glomerulus odour is drawn from the name, so every option still smells like itself. Options that mean similar things share glomeruli, so the fly finds them harder to tell apart. The dictionary is ours; what each glomerulus detects is not.</p>
+        <h3>The encoding</h3>
+        <p>Your answers decide what the smell is worth. Upside drives the PAM dopamine neurons, risk and effort drive the PPL1 dopamine neurons, newness sets odour intensity, familiarity sets learning strength, unpredictability adds trial-to-trial jitter. This model has the mushroom body only, so a fly's inborn reactions to a smell are not simulated: the meaning shapes which neurons carry the option, and the answers teach the fly what it is worth.</p>
+      </div>
+      <div>
+        <h3>The dynamics</h3>
+        <p>A firing-rate model runs in two phases. Learning: each odour is smelled while dopamine teaches the circuit, weakening Kenyon-cell synapses onto output neurons — the fly's real learning rule. Test: each odour is smelled again; output neurons that promote approach are weighed against those that promote avoidance. Which outputs mean "approach" is derived from the wiring, not assigned by hand.</p>
+        <h3>The colours</h3>
+        <p>Each population has one colour everywhere: in the brain, the charts and the text. A neuron lights up only when the engine computed a firing rate for it.</p>
+        <h3>What it is not</h3>
+        <p>No language model makes the choice. The fly does not understand jobs, people, cities or money. This is an experimental instrument and a creative tool, not advice. Ignore the fly. It's a fly.</p>
+        <h3>Where it runs</h3>
+        <p>The whole simulation runs on your own device, in your browser or in the app. Nothing you type is sent anywhere.</p>
+      </div>
+    </div>
+    <p class="refs">Dorkenwald et al., Nature 2024 · Schlegel et al., Nature 2024 · Shiu et al., Nature 2024 · Aso et al., eLife 2014 · Hallem &amp; Carlson, Cell 2006 · Suh et al., Nature 2004 · Stensmyr et al., Cell 2012 · Semmelhack &amp; Wang, Nature 2009 · Dweck et al., Curr Biol 2013</p>
+  </div>
+</div>
+
+<noscript><p class="noscript">Ask the Fly needs JavaScript and WebGL.</p></noscript>
+<script>
+  // If anything fails to start, say so on the page instead of silently doing nothing.
+  addEventListener("error", (e) => { const l = document.getElementById("loading"); if (l) { l.classList.remove("done"); l.querySelector("span").textContent = "Something went wrong: " + (e.message || e.error) + " — try reloading the page"; } });
+</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

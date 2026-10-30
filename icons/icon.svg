@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" fill="#fbfbfa"/>
+  <circle cx="512" cy="512" r="330" fill="none" stroke="#d9dde2" stroke-width="3"/>
+  <polygon points="563.10,541.50 512.00,571.00 460.90,541.50 460.90,482.50 512.00,453.00 563.10,482.50" fill="#0d0e10" stroke="#0d0e10" stroke-width="5"/>
+  <polygon points="670.48,541.50 619.39,571.00 568.29,541.50 568.29,482.50 619.39,453.00 670.48,482.50" fill="none" stroke="#0d0e10" stroke-width="5"/>
+  <polygon points="616.79,634.50 565.69,664.00 514.60,634.50 514.60,575.50 565.69,546.00 616.79,575.50" fill="none" stroke="#0d0e10" stroke-width="5"/>
+  <polygon points="509.40,634.50 458.31,664.00 407.21,634.50 407.21,575.50 458.31,546.00 509.40,575.50" fill="none" stroke="#0d0e10" stroke-width="5"/>
+  <polygon points="455.71,541.50 404.61,571.00 353.52,541.50 353.52,482.50 404.61,453.00 455.71,482.50" fill="none" stroke="#0d0e10" stroke-width="5"/>
+  <polygon points="509.40,448.50 458.31,478.00 407.21,448.50 407.21,389.50 458.31,360.00 509.40,389.50" fill="none" stroke="#0d0e10" stroke-width="5"/>
+  <polygon points="616.79,448.50 565.69,478.00 514.60,448.50 514.60,389.50 565.69,360.00 616.79,389.50" fill="none" stroke="#0d0e10" stroke-width="5"/>
+</svg>
